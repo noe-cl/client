@@ -1,31 +1,39 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
-import {AppComponent} from "./app.component";
-import {Routes, RouterModule} from "@angular/router";
-import {HomeComponent} from "./home/home.component";
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HomeComponent} from './home/home.component';
+import {Routes, RouterModule} from '@angular/router';
+import {MdTabsModule, MdGridListModule} from '@angular/material';
 
-const appRoutes: Routes = [
-    {
-        path: '', component: HomeComponent
-    }
+const routes: Routes = [
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent
-    ],
-    imports: [
-        RouterModule.forRoot(appRoutes),
+  declarations: [
+    AppComponent,
+    HomeComponent
+  ],
+  imports: [
+    // Routing.
+    RouterModule.forRoot(routes),
 
-        BrowserModule,
-        FormsModule,
-        HttpModule
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+    // Animations for material.
+    BrowserAnimationsModule,
+
+    // Material modules.
+    MdTabsModule,
+    MdGridListModule,
+
+    BrowserModule,
+    FormsModule,
+    HttpModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
