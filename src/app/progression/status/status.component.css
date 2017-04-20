@@ -1,0 +1,8 @@
+:host {
+    position: relative;
+}
+
+.name {
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,13 @@
+<md-grid-list cols="3" rowHeight="20px">
+    <md-grid-tile [rowspan]="2"><span class="name">{{name}}</span></md-grid-tile>
+    <md-grid-tile [colspan]="2">{{value}}/{{max}}</md-grid-tile>
+    <md-grid-tile [colspan]="2">
+        <md-progress-bar
+                class="bar"
+                color="primary"
+                mode="determinate"
+                [value]="value"
+                [bufferValue]="max">
+        </md-progress-bar>
+    </md-grid-tile>
+</md-grid-list>
