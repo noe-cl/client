@@ -7,6 +7,10 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   tabs: {link: string, label: string}[] = [
-    {link: '', label: 'Accueil'}
+    {link: '/home', label: 'Accueil'},
+    {link: '/presentation', label: 'Présentation CL'},
+    {link: '/news', label: 'News'},
+    {link: '/forum', label: 'Forum'},
+    {link: '/join-us', label: 'Nous rejoindre'},
   ];
 }

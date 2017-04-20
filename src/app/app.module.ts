@@ -7,11 +7,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule} from '@angular/material';
-import {ProgressionComponent} from './progression/progression.component';
-import {StatusComponent} from './progression/status/status.component';
+import {ProgressionComponent} from './presentation/progression/progression.component';
+import {StatusComponent} from './presentation/progression/status/status.component';
+import {PresentationComponent} from './presentation/presentation.component';
+import {NewsComponent} from './news/news.component';
+import {ForumComponent} from './forum/forum.component';
+import {JoinUsComponent} from './join-us/join-us.component';
 
 const routes: Routes = [
-    {path: '', component: HomeComponent}
+    {path: '', redirectTo: '/home', pathMatch: 'full'},
+    {path: 'home', component: HomeComponent},
+    {path: 'presentation', component: PresentationComponent},
+    {path: 'news', component: NewsComponent},
+    {path: 'forum', component: ForumComponent},
+    {path: 'join-us', component: JoinUsComponent},
 ];
 
 @NgModule({
@@ -19,7 +28,11 @@ const routes: Routes = [
         AppComponent,
         HomeComponent,
         ProgressionComponent,
-        StatusComponent
+        StatusComponent,
+        PresentationComponent,
+        NewsComponent,
+        ForumComponent,
+        JoinUsComponent
     ],
     imports: [
         // Routing.
