@@ -6,9 +6,9 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
-import {MdTabsModule, MdGridListModule, MdProgressBarModule} from '@angular/material';
+import {MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule} from '@angular/material';
 import {ProgressionComponent} from './progression/progression.component';
-import { StatusComponent } from './progression/status/status.component';
+import {StatusComponent} from './progression/status/status.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent}
@@ -32,6 +32,7 @@ const routes: Routes = [
         MdTabsModule,
         MdGridListModule,
         MdProgressBarModule,
+        MdCardModule,
 
         BrowserModule,
         FormsModule,
