@@ -1,15 +1,17 @@
-<div class="content">
-    <h1>
+<div class="container">
+    <h1 class="header">
         Noe
     </h1>
-    <nav md-tab-nav-bar>
-        <a md-tab-link
-           *ngFor="let tab of tabs"
-           [routerLink]="tab.link"
-           routerLinkActive #rla="routerLinkActive"
-           [active]="rla.isActive">
-            {{tab.label}}
-        </a>
-    </nav>
-    <router-outlet></router-outlet>
+    <div class="content">
+        <nav md-tab-nav-bar>
+            <a md-tab-link
+               *ngFor="let tab of tabs"
+               [routerLink]="tab.link"
+               routerLinkActive #rla="routerLinkActive"
+               [active]="rla.isActive">
+                {{tab.label}}
+            </a>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
 </div>
