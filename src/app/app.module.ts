@@ -17,6 +17,7 @@ import {NewsComponent} from './news/news.component';
 import {ForumComponent} from './forum/forum.component';
 import {JoinUsComponent} from './join-us/join-us.component';
 import { MembersComponent } from './presentation/members/members.component';
+import { DiscordWidgetComponent } from './discord-widget/discord-widget.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -37,7 +38,8 @@ const routes: Routes = [
         NewsComponent,
         ForumComponent,
         JoinUsComponent,
-        MembersComponent
+        MembersComponent,
+        DiscordWidgetComponent
     ],
     imports: [
         // Routing.
