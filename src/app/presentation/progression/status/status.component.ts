@@ -8,8 +8,8 @@ import {Component, Input} from '@angular/core';
 export class StatusComponent {
 
     @Input() public name: string;
-    @Input() public value: string;
-    @Input() public max: string;
+    @Input() public value: number;
+    @Input() public max: number;
 
     constructor() {
     }

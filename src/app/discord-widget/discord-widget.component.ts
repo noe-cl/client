@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/observable';
 })
 export class DiscordWidgetComponent implements OnInit {
 
-    private guild: Observable<Guild>;
+    public guild: Observable<Guild>;
 
     @Input() serverid: number;
 
