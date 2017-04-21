@@ -5,7 +5,7 @@
             <h3 md-subheader>Channels</h3>
             <md-list-item *ngFor="let channel of (guild | async)?.channels">
                 <h3 md-line>{{channel.name}}</h3>
-                <div md-line *ngFor="let member of channel.members">
+                <div md-line class="in-channel-member" *ngFor="let member of channel.members">
                     <img md-list-avatar class="mini-avatar" [src]="member.avatar_url" alt="{{member.username}}">
                     <span class="mini-member-name">{{member.nick === undefined?member.username:member.nick}}</span>
                 </div>
@@ -20,6 +20,6 @@
         </md-list>
     </md-card-content>
     <md-card-actions>
-        <a target="_blank" [href]="(guild | async)?.instant_invite" md-button>Nous rejoindre !</a>
+        <a target="_blank" class="join" [href]="(guild | async)?.instant_invite" md-raised-button centered="true">Nous rejoindre !</a>
     </md-card-actions>
 </md-card>
