@@ -8,7 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {
     MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
-    MdIconModule, MdChipsModule
+    MdIconModule, MdChipsModule, MdButtonModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -56,6 +56,7 @@ const routes: Routes = [
         MdListModule,
         MdIconModule,
         MdChipsModule,
+        MdButtonModule,
 
         BrowserModule,
         FormsModule,
