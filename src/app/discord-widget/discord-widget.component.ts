@@ -1,7 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Http} from '@angular/http';
 import {Guild} from './model/guild';
-import {Observable} from 'rxjs/observable';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-discord-widget',
