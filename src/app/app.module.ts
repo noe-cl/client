@@ -6,7 +6,10 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
-import {MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule} from '@angular/material';
+import {
+    MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
+    MdIconModule, MdChipsModule
+} from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
 import {PresentationComponent} from './presentation/presentation.component';
@@ -48,6 +51,9 @@ const routes: Routes = [
         MdGridListModule,
         MdProgressBarModule,
         MdCardModule,
+        MdListModule,
+        MdIconModule,
+        MdChipsModule,
 
         BrowserModule,
         FormsModule,
