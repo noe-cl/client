@@ -13,6 +13,7 @@ import {PresentationComponent} from './presentation/presentation.component';
 import {NewsComponent} from './news/news.component';
 import {ForumComponent} from './forum/forum.component';
 import {JoinUsComponent} from './join-us/join-us.component';
+import { MembersComponent } from './presentation/members/members.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -32,7 +33,8 @@ const routes: Routes = [
         PresentationComponent,
         NewsComponent,
         ForumComponent,
-        JoinUsComponent
+        JoinUsComponent,
+        MembersComponent
     ],
     imports: [
         // Routing.
