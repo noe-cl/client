@@ -6,7 +6,16 @@
         Newsletter du mois
     </md-grid-tile>
     <md-grid-tile [colspan]="2" [rowspan]="2">
-        Liens utiles
+        <md-list class="sites">
+            <h3 md-subheader>Sites utiles</h3>
+            <div class="items">
+                <md-list-item *ngFor="let site of sites">
+                    <md-icon md-list-icon>link</md-icon>
+                    <h4 md-line>{{site.name}}</h4>
+                    <p md-line class="description">{{site.description}}</p>
+                </md-list-item>
+            </div>
+        </md-list>
     </md-grid-tile>
     <md-grid-tile [rowspan]="2">
         Vidéo du mois

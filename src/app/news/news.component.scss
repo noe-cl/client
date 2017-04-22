@@ -1,0 +1,12 @@
+:host {
+  .sites {
+    text-align: left;
+  }
+  .items {
+    height: 300px;
+    overflow-y: scroll;
+  }
+  .description {
+    white-space: normal !important;
+  }
+}
