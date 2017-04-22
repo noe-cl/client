@@ -43,7 +43,7 @@ const routes: Routes = [
     ],
     imports: [
         // Routing.
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, {useHash:true}),
 
         // Animations for material.
         BrowserAnimationsModule,
