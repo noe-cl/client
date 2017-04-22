@@ -19,17 +19,17 @@ script:
   - ng build --prod
 
 addons:
-    apt:
-    sources:
-        - google-chrome
-        packages:
-            - google-chrome-stable
-            - google-chrome-beta
-            - sshpass
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+    - google-chrome-beta
+    - sshpass
 
 after_success:
-    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && export SSHPASS=$DEPLOY_PASS
-    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no -rp ./dist/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && export SSHPASS=$DEPLOY_PASS
+  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no -rp ./dist/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 
 env:
   global:
