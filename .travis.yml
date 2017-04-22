@@ -21,7 +21,6 @@ before_script:
   - npm install -g @angular/cli
 
 script:
-  - ng test --single-run --code-coverage
   - ng build --prod
 
 addons:
