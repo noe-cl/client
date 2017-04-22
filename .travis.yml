@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-  - "6.10"
+  - '6.10'
 
 branches:
   only:
-    - master
+  - master
 
 before_script:
   - npm install -g @angular/cli
@@ -12,7 +12,18 @@ before_script:
 script:
   - ng build --prod
 
-notifications:
-  email:
-    on_failure: change
-    on_success: change
+addons:
+    apt:
+        packages:
+            - sshpass
+
+after_success:
+    - export SSHPASS=$DEPLOY_PASS
+    - sshpass -e scp -R ./build $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+
+env:
+  global:
+  - secure: bLWbeT2BbbH7nv75gcuoPFVlKEO1fAZooILoJBxpwAcymodOBXPIj0NyJbpZHhozS1SptWhjaxAYHWz8wBgPI9xoL2xrejhRS+L/4fliIplGAherP8XLqNNyFW2qT4+6X4QkDWa6iOLe5iagN0pnM8495yLc6LuWjnpjLIS5AG1hAajJQpGrHTI1knj6F46/r/4QvoPLgxJgGB5Ob5TAYjKbWBwgpwiFVwonLMiMVz7OwNfWv5UiU7NgqHFtrzn/lZW3KzpTVpz4R15wBI0Z/4HqJSPFmogDknrd8bWjedM0PzDqODTqbbiVUzKameRVuFcpSbcpagXb5h3dfypOTm4mxzwC4HkYvqPVoMt4vlJ3N6IdmpUJ1vHv+sE6GQQLSHD9M5+wXw/g6zU/y4Qhn9SC890qguQ+e/teEs9QQzhlJx6MmrPDSSYGsJIrrfRrKSErVIQKb3CGI9OE810tu0lV+nt9IhxtkldbxQ5fIuhvVGbkYSVs6DHnBgSZJ+sIu4CbsPoyXPfU22SGwvqvOZomLChcjq2/f2BhPna+rDv8viRs5Vc2sSKFaHBCbfa5DIXC284+Ti/eK6lMK5Pf42Q+tEXPM86s2gBdTtZHDtbo+KFAl7Tbt1ksSRuhmcNRyVeLmzwub+FjbA0V4nULIGj7/OVebXTm8Ge8xuVGjLc=
+  - secure: 0lfw9K+Az2/KzS8bI4B3z2x5pL8cHYa6w/8GG2q5Jrx3wGbBXobwVeAByETaYln291h7xposMWkHxc2DHwIJHgEY6hQZYLKVE0ty2upL8e5y8zj82h+5XsNXcsTBHMQ63Y08ODFPc6FR0kBRpCJA0BgnZbCHona1R5WxQ7VLlZZVbTBRRYnJbYLUo9na2LDYzOhlaGP/1Dt+5tuia0sfFA9rBu1mY7L18GTAF1rS3VCSQRt4nN2IL7AM93NtMr+hFFvKGf0Qqq3QaFieB50QwknlpzJsH0zNH/EX/5OZu2gHISE9KEN6IygVRPT5OXCqJY+Q0TqIQE/k1MZAsMHA/WoMcRF72c2wa+oX4Tbxki3lLFmyrLfiRWLmZ9ZnsHeMZe35diOAXrP+9b4Ezu6/fVs/WTENzhfRnpzem74WmRIPoXmxImwsnF+dNVRA1oa4VtKIo9hWCS9+gPiMiZRcrvmcZgFo4x6nvtZQKft4rPnuSkxh792klp4ExbzfB+nzu4XhZX0a8XPtUwtKnVMfd/C6Eepw612/slr2yEPtB+5l2tLlfvO9S4/WZ949ish/X1068MtY0XxHY1V8C6bG7+lEMumUwoxB9NLHjymLhoT35wywHX3aaXi70iHlZE2NCFE3+ooecExM0BYBB6jPDQctY+fkCjv98T2VQuAWMX4=
+  - secure: R0sWsTLDD/2vfsVJ7Ytf79uAf5BEuCxQBZp3dt67zAJ/tzha9Yuo+kvngfd/ZnqK7wul3Fz6SO2EqI/pjWgBlv9gRmJ3S8CR/U3TOtjDlI0OZn/U9NBwsETDRbD1z567dDoLJbUKx3YFBQmsDEgWYqrbXiCGOkJQHh6unFo6ZQEMuREsGE6QvOgf7UJSOtmZgTlncQUtqFFVhcw9a7fFrTttyDA7mQ0rpe+I9lqwCq/UX4IBnx+nXzjo1kYpXPs6uYkJ4IWz57pVyTZiNMylmkRXe4RDqiDTvBkl4S32kOHEBSQQEMYo4uTK1TSuO8YXkZpMiW09VEwl5wg/QZIbj+OUItsgGuSQgPFRuOyMp6Te2w6rOMMTYyMyF+jGvC/9HyUbELfE0B5VFUNGUDuUOmW4Nh7mIGm3J/Cg9MDWr6bn5FV1zoReHQGrxtDS80HPtun1jW5t6RoFWSqmYsjsJw/beYzPWK7LfAzQONvsCmSmiNF4IoQ1xnTEEdsT1yMBM7vSM4bwQH+Txv9gEvk8eUMldzMqZnr/6BNn415aKu61EBhz26ZSJNCHtBQUcAi2p6lwnoEGzbIdXjelUuRDr9jLD02DIcr0tnGkNUkKSMyXZukR6tNiuTstlYPMpWXj82amMWwFCBEWnQWSwUjAsGag1wlksekvSCb96zPCTog=
+  - secure: R9+VhDIJYxIj2JxCo2DITwvVRW82Q9I8INERMRSZKoE7FPlHOhfw9Xw5ObrPMUxieL8Zq9wPvvM5v8hYDYntZoO8pr7tsLSGyG6ImZxZnvjQx83VUuGAWlb+sCuLfXEAXzfpOSaubgJeYdAr/y5JiHdUmF0iVZ+es3h5cV22hq2fPh6Y3/FGK8P9oqYeW+2+/KGJmHoY+HIgw8zaw0Zm18xaWLC+amYaku0xHoN0ncktODbVQq5d2cvk4RhuBSwkK0tQEAGdLvzQxuU32qMOvZ1AQ9Y8swbuyV0lhjHjKYnoBGuA7GFvb2JOG67I0YPGYEIMjGZOxsxnCY8ZHa/LxPTfbrWOZGO6t0DOqLARWIBQl+CwHFIiwMZevnrlIM6dmtFx0Qoiu313mm868fdc2/FcsRj3YTMlD/8Ky/gfYepoKn7IQXm8uhbMqH6qfUZuS3DzVFHJtdi5SC3J1VAqDHHHod3Qx7Pv3q6oZU6Ot08s6tT392+tVCtp9cdsyiwvwaptutJ4GvRBmeESm4cGU3FHkL/CzxU7zo5ccIf/ht9VwlkpcM08jo2ebcSW651QR4mXSFQwzCRvaBEhI3d2dahUUUHCwiiNuavThbOd+89DmOdK9XZ5hthIehrEJ6rxzRlqb7K3kRdBxNpmb+n4QjtF6GwkSgX5j2JfwXhoN+0=
