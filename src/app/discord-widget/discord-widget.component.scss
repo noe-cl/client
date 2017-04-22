@@ -2,6 +2,8 @@
   text-align: left;
   width: 100%;
   padding: 10px;
+  max-height: 100%;
+  overflow-y: scroll;
   .avatar {
     width: 32px !important;
     height: 32px !important;
@@ -16,6 +18,12 @@
     font-size: 13px;
     line-height: 16px;
     padding: 0 2px;
+  }
+  .icon {
+    font-size: 13px;
+    height: auto;
+    width: auto;
+    vertical-align: middle;
   }
   .in-channel-member {
     margin-left: 20px !important;

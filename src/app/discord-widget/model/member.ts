@@ -10,7 +10,7 @@ export interface Member {
     avatar: string;
     self_deaf: boolean;
     discriminator: string;
-    self_mute: string;
+    self_mute: boolean;
     id: string;
     bot: boolean;
 }

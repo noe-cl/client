@@ -8,6 +8,8 @@
                 <div md-line class="in-channel-member" *ngFor="let member of channel.members">
                     <img md-list-avatar class="mini-avatar" [src]="member.avatar_url" alt="{{member.username}}">
                     <span class="mini-member-name">{{member.nick === undefined?member.username:member.nick}}</span>
+                    <md-icon *ngIf="member.self_deaf || member.deaf || member.suppress" class="icon">volume_off</md-icon>
+                    <md-icon *ngIf="member.self_mute || member.mute || member.suppress" class="icon">mic_off</md-icon>
                 </div>
             </md-list-item>
         </md-list>
@@ -20,6 +22,7 @@
         </md-list>
     </md-card-content>
     <md-card-actions>
-        <a target="_blank" class="join" [href]="(guild | async)?.instant_invite" md-raised-button centered="true">Nous rejoindre !</a>
+        <a target="_blank" class="join" [href]="(guild | async)?.instant_invite" md-raised-button centered="true">Nous
+            rejoindre !</a>
     </md-card-actions>
 </md-card>
