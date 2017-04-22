@@ -10,6 +10,7 @@ before_script:
   - npm install -g @angular/cli
 
 script:
+  - ng test
   - ng build --prod
 
 addons:
@@ -19,7 +20,7 @@ addons:
 
 after_success:
     - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && export SSHPASS=$DEPLOY_PASS
-    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no -rp ./build $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no -rp ./dist/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 
 env:
   global:
