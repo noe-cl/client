@@ -8,7 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {
     MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
-    MdIconModule, MdChipsModule, MdButtonModule
+    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -16,8 +16,9 @@ import {PresentationComponent} from './presentation/presentation.component';
 import {NewsComponent} from './news/news.component';
 import {ForumComponent} from './forum/forum.component';
 import {JoinUsComponent} from './join-us/join-us.component';
-import { MembersComponent } from './presentation/members/members.component';
-import { DiscordWidgetComponent } from './discord-widget/discord-widget.component';
+import {MembersComponent} from './presentation/members/members.component';
+import {DiscordWidgetComponent} from './discord-widget/discord-widget.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -39,11 +40,12 @@ const routes: Routes = [
         ForumComponent,
         JoinUsComponent,
         MembersComponent,
-        DiscordWidgetComponent
+        DiscordWidgetComponent,
+        LoginComponent
     ],
     imports: [
         // Routing.
-        RouterModule.forRoot(routes, {useHash:true}),
+        RouterModule.forRoot(routes, {useHash: true}),
 
         // Animations for material.
         BrowserAnimationsModule,
@@ -57,12 +59,18 @@ const routes: Routes = [
         MdIconModule,
         MdChipsModule,
         MdButtonModule,
+        MdMenuModule,
+        MdDialogModule,
+        MdInputModule,
 
         BrowserModule,
         FormsModule,
         HttpModule
     ],
     providers: [],
+    entryComponents: [
+        LoginComponent
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

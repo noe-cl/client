@@ -11,6 +11,19 @@
                [active]="rla.isActive">
                 {{tab.label}}
             </a>
+            <button md-icon-button [mdMenuTriggerFor]="menu" class="menu">
+                <md-icon>person_outline</md-icon>
+            </button>
+            <md-menu #menu="mdMenu">
+                <button (click)="login()" md-menu-item>
+                    <md-icon>person</md-icon>
+                    <span>Connexion</span>
+                </button>
+                <button md-menu-item>
+                    <md-icon>person_add</md-icon>
+                    <span>Inscription</span>
+                </button>
+            </md-menu>
         </nav>
         <router-outlet></router-outlet>
     </div>
