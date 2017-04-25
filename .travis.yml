@@ -27,7 +27,7 @@ after_success:
   docker tag $REPO:$COMMIT $REPO:$TAG;
   docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER;
   docker push $REPO; export SSHPASS=$DEPLOY_PASS;
-  sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh
+  sshpass -e ssh $DEPLOY_USER@$DEPLOY_HOST $DEPLOY_PATH/deploy.sh;
   fi
 env:
   global:
