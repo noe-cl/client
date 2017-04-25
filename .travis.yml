@@ -2,35 +2,42 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - '6.10'
+- '6.10'
 
-branches:
-  only:
-  - master
+services:
+- docker
 
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
-  - sudo apt-get install -y sshpass
+- export CHROME_BIN=chromium-browser
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sudo apt-get update
+- sudo apt-get install -y libappindicator1 fonts-liberation
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- sudo apt-get install -y sshpass
 
 before_script:
-  - npm install -g @angular/cli
+- npm install -g @angular/cli
 
 script:
-  - ng build --prod
+- ng build --prod
 
 after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && export SSHPASS=$DEPLOY_PASS
-  - test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && sshpass -e scp -o stricthostkeychecking=no -rp ./dist/* $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+- if [ $TRAVIS_PULL_REQUEST == "false" ]; then
+  docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  export REPO=noefc/client
+  export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+  docker build -f Dockerfile -t $REPO:$COMMIT .
+  docker tag $REPO:$COMMIT $REPO:$TAG
+  docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+  docker push $REPO
+  docker build -t noe-fc/client .
+  fi
 
 env:
   global:
-  - secure: bLWbeT2BbbH7nv75gcuoPFVlKEO1fAZooILoJBxpwAcymodOBXPIj0NyJbpZHhozS1SptWhjaxAYHWz8wBgPI9xoL2xrejhRS+L/4fliIplGAherP8XLqNNyFW2qT4+6X4QkDWa6iOLe5iagN0pnM8495yLc6LuWjnpjLIS5AG1hAajJQpGrHTI1knj6F46/r/4QvoPLgxJgGB5Ob5TAYjKbWBwgpwiFVwonLMiMVz7OwNfWv5UiU7NgqHFtrzn/lZW3KzpTVpz4R15wBI0Z/4HqJSPFmogDknrd8bWjedM0PzDqODTqbbiVUzKameRVuFcpSbcpagXb5h3dfypOTm4mxzwC4HkYvqPVoMt4vlJ3N6IdmpUJ1vHv+sE6GQQLSHD9M5+wXw/g6zU/y4Qhn9SC890qguQ+e/teEs9QQzhlJx6MmrPDSSYGsJIrrfRrKSErVIQKb3CGI9OE810tu0lV+nt9IhxtkldbxQ5fIuhvVGbkYSVs6DHnBgSZJ+sIu4CbsPoyXPfU22SGwvqvOZomLChcjq2/f2BhPna+rDv8viRs5Vc2sSKFaHBCbfa5DIXC284+Ti/eK6lMK5Pf42Q+tEXPM86s2gBdTtZHDtbo+KFAl7Tbt1ksSRuhmcNRyVeLmzwub+FjbA0V4nULIGj7/OVebXTm8Ge8xuVGjLc=
-  - secure: 0lfw9K+Az2/KzS8bI4B3z2x5pL8cHYa6w/8GG2q5Jrx3wGbBXobwVeAByETaYln291h7xposMWkHxc2DHwIJHgEY6hQZYLKVE0ty2upL8e5y8zj82h+5XsNXcsTBHMQ63Y08ODFPc6FR0kBRpCJA0BgnZbCHona1R5WxQ7VLlZZVbTBRRYnJbYLUo9na2LDYzOhlaGP/1Dt+5tuia0sfFA9rBu1mY7L18GTAF1rS3VCSQRt4nN2IL7AM93NtMr+hFFvKGf0Qqq3QaFieB50QwknlpzJsH0zNH/EX/5OZu2gHISE9KEN6IygVRPT5OXCqJY+Q0TqIQE/k1MZAsMHA/WoMcRF72c2wa+oX4Tbxki3lLFmyrLfiRWLmZ9ZnsHeMZe35diOAXrP+9b4Ezu6/fVs/WTENzhfRnpzem74WmRIPoXmxImwsnF+dNVRA1oa4VtKIo9hWCS9+gPiMiZRcrvmcZgFo4x6nvtZQKft4rPnuSkxh792klp4ExbzfB+nzu4XhZX0a8XPtUwtKnVMfd/C6Eepw612/slr2yEPtB+5l2tLlfvO9S4/WZ949ish/X1068MtY0XxHY1V8C6bG7+lEMumUwoxB9NLHjymLhoT35wywHX3aaXi70iHlZE2NCFE3+ooecExM0BYBB6jPDQctY+fkCjv98T2VQuAWMX4=
-  - secure: R0sWsTLDD/2vfsVJ7Ytf79uAf5BEuCxQBZp3dt67zAJ/tzha9Yuo+kvngfd/ZnqK7wul3Fz6SO2EqI/pjWgBlv9gRmJ3S8CR/U3TOtjDlI0OZn/U9NBwsETDRbD1z567dDoLJbUKx3YFBQmsDEgWYqrbXiCGOkJQHh6unFo6ZQEMuREsGE6QvOgf7UJSOtmZgTlncQUtqFFVhcw9a7fFrTttyDA7mQ0rpe+I9lqwCq/UX4IBnx+nXzjo1kYpXPs6uYkJ4IWz57pVyTZiNMylmkRXe4RDqiDTvBkl4S32kOHEBSQQEMYo4uTK1TSuO8YXkZpMiW09VEwl5wg/QZIbj+OUItsgGuSQgPFRuOyMp6Te2w6rOMMTYyMyF+jGvC/9HyUbELfE0B5VFUNGUDuUOmW4Nh7mIGm3J/Cg9MDWr6bn5FV1zoReHQGrxtDS80HPtun1jW5t6RoFWSqmYsjsJw/beYzPWK7LfAzQONvsCmSmiNF4IoQ1xnTEEdsT1yMBM7vSM4bwQH+Txv9gEvk8eUMldzMqZnr/6BNn415aKu61EBhz26ZSJNCHtBQUcAi2p6lwnoEGzbIdXjelUuRDr9jLD02DIcr0tnGkNUkKSMyXZukR6tNiuTstlYPMpWXj82amMWwFCBEWnQWSwUjAsGag1wlksekvSCb96zPCTog=
-  - secure: R9+VhDIJYxIj2JxCo2DITwvVRW82Q9I8INERMRSZKoE7FPlHOhfw9Xw5ObrPMUxieL8Zq9wPvvM5v8hYDYntZoO8pr7tsLSGyG6ImZxZnvjQx83VUuGAWlb+sCuLfXEAXzfpOSaubgJeYdAr/y5JiHdUmF0iVZ+es3h5cV22hq2fPh6Y3/FGK8P9oqYeW+2+/KGJmHoY+HIgw8zaw0Zm18xaWLC+amYaku0xHoN0ncktODbVQq5d2cvk4RhuBSwkK0tQEAGdLvzQxuU32qMOvZ1AQ9Y8swbuyV0lhjHjKYnoBGuA7GFvb2JOG67I0YPGYEIMjGZOxsxnCY8ZHa/LxPTfbrWOZGO6t0DOqLARWIBQl+CwHFIiwMZevnrlIM6dmtFx0Qoiu313mm868fdc2/FcsRj3YTMlD/8Ky/gfYepoKn7IQXm8uhbMqH6qfUZuS3DzVFHJtdi5SC3J1VAqDHHHod3Qx7Pv3q6oZU6Ot08s6tT392+tVCtp9cdsyiwvwaptutJ4GvRBmeESm4cGU3FHkL/CzxU7zo5ccIf/ht9VwlkpcM08jo2ebcSW651QR4mXSFQwzCRvaBEhI3d2dahUUUHCwiiNuavThbOd+89DmOdK9XZ5hthIehrEJ6rxzRlqb7K3kRdBxNpmb+n4QjtF6GwkSgX5j2JfwXhoN+0=
+  - secure: UzfqV/3l2VbJyyJsvMN4yj0rmWBx/JIT0h2x/5Qssg0RtqBJPNGDhIl97eUGi3daOWkgknSQ/apqUJleLysUfutr1sgM4DWEn+CkELxHzD5RFMVAsuULxuCAzgmWC5Kumc94UGgY/yBBHg9AdPllASyM6gZkJvWA/ONk0meRTldd9w5U3H+e2cmDEgiPZeqWTkJbgMto8BhtZncqm2dp0qYs/BSZJ9IIRqVrQ1IJxhBq6YQSMlD5ZU1p6dL8O9+rc/VYJmvOP/hvWcw1GlMmFNS4078+CH7vCX32Fok5siqgag0UbiTO7QkIn64/kMhKaTv47cU5kyMux3HMRqyjpTI5umSLH+0MtbGxUqaz5ZENd1rG31zGP/4pcbyXFFR79hcR6N58cCscfLHL0CtB9PEFRiWB0DS1bLOi6OXdGnub735B3nroJ8Q51W+OW/vQWGoL5cKKO7YsorgQ+BRDIuup5wogbjbyttTQ2QkZ/2JurK7Rmm07Adc4/27OjDbTiOQEEiR7wVHEitrXAefAUBjtumjDev4BaKqfNsG5Pep6b+4aXZ5nH0gY0ayTF0HlqkLAWEDTfSU7Cm8UJp8JIXpMS+s62m27vKTHmuFIv9qDH+7nvbi5S9zRqFgAAkeYZc0GdvoWok+CmjJ+dF7J048nc2SsSa0fxRwtd6pTeCQ= #DOCKER_EMAIL
+  - secure: ez/PuK7oMqryd3g7BEPd32uGwEKtICi39HDPCCMPCyLZeWw6iux1JX3kA7BdqXirypC6mK1zX/ln5dzRV/Uon/DXJmjNCFlMj9HmIrQLKsETTAQ8+o6KWJkSZE/Qtz6c8PIDdS51+OR8rfoUjTRdDrUFToqPPlJWxvHRIEZxUUuhp6KZLzyLN1/ReP+6MSlSFrhHDoCdrm96m6eU2FtOkn/Hpo/BfBm5PKjtGcp3ZhVIhBTFzWEPH7+TrhnsNs1LEAFV3ADV9VFLSLNcUYb1zDGYzWIw2biu3DiqMqe5rgIkm4TjXULrp6XXWb20f1GNoHRZ4kxeaw4VdisiiGBuq0MqdUqiJnDdoscLw4bWNDRaE1hYy3Qc+WwDwou0Ua0RUl33r3c52r7sJYgpXVrXNs+fz/j6DVqvB1DVu0kyKTSfC8kliTkO5boPZyTXKTpv05eSkgIVqiUiNYY4xdd1SdmkzLGIn6K6qhYule1WcEK5ho4Dc9ZnMUzTmmCGLKkctqkjBmS69aZ8tcbSXF6U4HinbEFbp8Hs1MseWQdUcUD60+GBPxKIXrb74t0/f5FNHAK6CMZn0YbfDl89m3P6DH6tfpK1XHh/UB2AxEgl9KsfH0sdOi9maCpy+HWLjN/q+u8tW66EpZHWe3dPu4r8ebxQCaDFGoAaaZuoQXwVK50= #DOCKER_USER
+  - secure: AvGQ4cQ9/nqQAaOW2H5Hg4yiZnAZbBqaXEqDKtooU3eul6ZYCQFcGqVsqNeCrrqTes1X36oWlPq08XBXbSG1HiUP9VMiS2ShYtkvUpt66XKKFGrGYvSYq7B1/3rZIGEzmzGP+jFOI2qYZGvVGHjRKV0AY6J/rYcngzgkzal2awHpaO+tSXvNKTMz8WKbWWMzVJiiDr0wJJvtW58YB6fKMstJktehq+IzpQS85Fb6OkGpDZnOngTkVuyo1NPgH9GP7M7a8VNE664uoSnGKYcu0PbbGbELruDAEEfedkpc8bpF0Jv71yvAz4evzfHjbe4jgsqQZv2qZoDPGrcxgA6h3GG3QzW+rIhFz5UNdyBWwWqaX/kag0nmiBj8Zg/EHn/prl2d///zl7DQ3QdQEliYPorSnGNARS51Gp4jifm9F6p1XVK3eilSO+huUcLOE7giSrPWBJQ+PEE4qyWbUPHHSvl9neahWyEWcvq6Q/sgkIdjlNbd2Xg53IJCpZHHPk6IYVxsGnCF7r0X49YaJFGuA1oFNNB1RQFJmGqsYmbxQRiDt/y0e9YVOCsbl9ZzW77Bvh1PS+iMFLeBvtgu5+w0mFZ9R3N9X2IvZSVhpyL/D2ogrRGSHKKQKQLxEHeKMTj+tve4cHFk1XGa11MchHYEMBos7aySm6Bemay78tNbsdQ= #DOCKER_PASS
+  - COMMIT=${TRAVIS_COMMIT::8}
