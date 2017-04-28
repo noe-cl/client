@@ -16,11 +16,6 @@ export class AppComponent {
         {link: '/join-us', label: 'Nous rejoindre'},
     ];
 
-    constructor(private dialog: MdDialog) {
+    constructor() {
     }
-
-    public login(): void {
-        this.dialog.open(LoginComponent);
-    }
-
 }

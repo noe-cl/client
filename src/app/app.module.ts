@@ -8,7 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {
     MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
-    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule
+    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule, MdSidenavModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -19,6 +19,7 @@ import {JoinUsComponent} from './join-us/join-us.component';
 import {MembersComponent} from './presentation/members/members.component';
 import {DiscordWidgetComponent} from './discord-widget/discord-widget.component';
 import {LoginComponent} from './login/login.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +42,8 @@ const routes: Routes = [
         JoinUsComponent,
         MembersComponent,
         DiscordWidgetComponent,
-        LoginComponent
+        LoginComponent,
+        SidebarComponent
     ],
     imports: [
         // Routing.
@@ -62,6 +64,7 @@ const routes: Routes = [
         MdMenuModule,
         MdDialogModule,
         MdInputModule,
+        MdSidenavModule,
 
         BrowserModule,
         FormsModule,
