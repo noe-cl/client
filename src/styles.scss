@@ -11,3 +11,8 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+//No idea why but I have to set this style here in order to get it working...
+.mat-ink-bar {
+  background-color: mat-color($app-accent, 100) !important;
+}
