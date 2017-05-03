@@ -14,7 +14,7 @@
             </md-list-item>
         </md-list>
         <md-list dense>
-            <h3 md-subheader>Membres</h3>
+            <h3 md-subheader>Membres en ligne</h3>
             <md-list-item *ngFor="let member of (guild | async)?.members">
                 <img md-list-avatar class="avatar" [src]="member.avatar_url" alt="{{member.username}}">
                 <span md-line>{{member.nick === undefined?member.username:member.nick}}</span>
@@ -22,7 +22,7 @@
         </md-list>
     </md-card-content>
     <md-card-actions>
-        <a target="_blank" class="join" [href]="(guild | async)?.instant_invite" md-raised-button centered="true">Nous
+        <a target="_blank" class="join" color="primary" [href]="(guild | async)?.instant_invite" md-raised-button centered="true">Nous
             rejoindre !</a>
     </md-card-actions>
 </md-card>

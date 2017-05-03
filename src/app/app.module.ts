@@ -20,6 +20,7 @@ import {MembersComponent} from './presentation/members/members.component';
 import {DiscordWidgetComponent} from './discord-widget/discord-widget.component';
 import {LoginComponent} from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import {LodestoneService} from './service/lodestone/lodestone.service';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -70,9 +71,10 @@ const routes: Routes = [
         FormsModule,
         HttpModule
     ],
-    providers: [],
+    providers: [
+        LodestoneService
+    ],
     entryComponents: [
-        LoginComponent
     ],
     bootstrap: [AppComponent]
 })

@@ -4,7 +4,7 @@
 
 :host {
   text-align: center;
-  .container {
+  .login-container {
     width: 1200px;
     margin: 0 auto;
     .header {
@@ -26,10 +26,11 @@
   md-sidenav {
     width: 300px;
   }
-  md-sidenav-container{
-    background: url("http://img.finalfantasyxiv.com/lds/h/R/a6Bm49It6jMLQvywkHgCNtbAa4.jpg") no-repeat center center fixed;
-    background-size: cover;
-    padding-bottom: 50px;
+
+  md-sidenav-container {
+    background-color: unset;
+    height: 100%;
+    width: 100%;
   }
 }
 
