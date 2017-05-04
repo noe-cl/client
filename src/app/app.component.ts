@@ -12,7 +12,6 @@ export class AppComponent {
         {link: '/home', label: 'Accueil'},
         {link: '/presentation', label: 'Présentation CL'},
         {link: '/news', label: 'News'},
-        {link: '/forum', label: 'Forum'},
         {link: '/join-us', label: 'Nous rejoindre'},
     ];
 
