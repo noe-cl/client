@@ -8,7 +8,7 @@
         <i>{{profile?.data.title}}</i>
         <md-grid-list cols="10" rowHeight="35px" gutterSize="5px">
             <md-grid-tile *ngFor="let job of classes">
-                <app-job-icon [icon]="job.data.icon" [level]="job.level" mdTooltip="job.data.abbr"
+                <app-job-icon [icon]="job.data.icon" [level]="job.level" [mdTooltip]="job.data.abbr"
                               mdTooltipPosition="above"></app-job-icon>
             </md-grid-tile>
         </md-grid-list>
