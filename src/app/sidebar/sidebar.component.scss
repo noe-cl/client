@@ -6,4 +6,21 @@
     align-items: center;
     justify-content: center;
   }
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .profile-container {
+      padding: 15px;
+      margin: auto;
+      md-grid-list {
+        margin-top: 10px;
+      }
+      img {
+        max-width: 100%;
+      }
+    }
+  }
 }

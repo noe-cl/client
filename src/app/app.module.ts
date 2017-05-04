@@ -8,7 +8,8 @@ import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {
     MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
-    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule, MdSidenavModule
+    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule, MdSidenavModule,
+    MdTooltipModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -21,6 +22,7 @@ import {DiscordWidgetComponent} from './discord-widget/discord-widget.component'
 import {LoginComponent} from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {LodestoneService} from './service/lodestone/lodestone.service';
+import { JobIconComponent } from './sidebar/job-icon/job-icon.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -44,7 +46,8 @@ const routes: Routes = [
         MembersComponent,
         DiscordWidgetComponent,
         LoginComponent,
-        SidebarComponent
+        SidebarComponent,
+        JobIconComponent,
     ],
     imports: [
         // Routing.
@@ -66,6 +69,7 @@ const routes: Routes = [
         MdDialogModule,
         MdInputModule,
         MdSidenavModule,
+        MdTooltipModule,
 
         BrowserModule,
         FormsModule,
