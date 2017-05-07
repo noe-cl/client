@@ -1,3 +1,7 @@
+@import '../../theme';
+
+@include angular-material-theme($app-theme);
+
 :host {
   .login-container {
     height: 100%;
@@ -15,6 +19,12 @@
     .profile-container {
       padding: 15px;
       margin: auto;
+      .jobs {
+        margin: 20px 0;
+        .jobCategory {
+          color: mat-color($app-accent, 100);
+        }
+      }
       md-grid-list {
         margin-top: 10px;
       }

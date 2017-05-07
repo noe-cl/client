@@ -21,7 +21,7 @@ import {MembersComponent} from './presentation/members/members.component';
 import {DiscordWidgetComponent} from './discord-widget/discord-widget.component';
 import {LoginComponent} from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import {LodestoneService} from './service/lodestone/lodestone.service';
+import {XivdbService} from './service/lodestone/xivdb.service';
 import { JobIconComponent } from './sidebar/job-icon/job-icon.component';
 
 const routes: Routes = [
@@ -76,7 +76,7 @@ const routes: Routes = [
         HttpModule
     ],
     providers: [
-        LodestoneService
+        XivdbService
     ],
     entryComponents: [
     ],

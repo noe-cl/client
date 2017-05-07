@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {LodestoneService} from '../service/lodestone/lodestone.service';
+import {XivdbService} from '../service/lodestone/xivdb.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -13,9 +12,27 @@ export class SidebarComponent implements OnInit {
 
     profile: any;
 
-    classes: any[] = [];
+    jobs: any[] = [];
 
-    constructor(private dialog: MdDialog, private lodestone: LodestoneService) {
+    constructor(private lodestone: XivdbService) {
+    }
+
+    public getDoW(): any[] {
+        return this.jobs.filter(job => {
+            return [1, 2, 3, 4, 5, 29, 6, 7, 26, 32, 31, 33].indexOf(job.id) > -1;
+        });
+    }
+
+    public getDoH(): any[] {
+        return this.jobs.filter(job => {
+            return [8, 9, 10, 11, 12, 13, 14, 15].indexOf(job.id) > -1;
+        });
+    }
+
+    public getDoL(): any[] {
+        return this.jobs.filter(job => {
+            return [16, 17, 18].indexOf(job.id) > -1;
+        });
     }
 
     public ngOnInit(): void {
@@ -24,7 +41,7 @@ export class SidebarComponent implements OnInit {
             .do(p => {
                 for (const job in p.data.classjobs) {
                     if (p.data.classjobs.hasOwnProperty(job)) {
-                        this.classes.push(p.data.classjobs[job]);
+                        this.jobs.push(p.data.classjobs[job]);
                     }
                 }
             })
