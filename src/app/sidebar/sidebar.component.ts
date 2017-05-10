@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {XivdbService} from '../service/lodestone/xivdb.service';
+import {XivdbService} from '../service/xivdb.service';
+import {AuthService} from '../service/auth.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,13 +9,19 @@ import {XivdbService} from '../service/lodestone/xivdb.service';
 })
 export class SidebarComponent implements OnInit {
 
-    public login = false;
+    public login = true;
 
     profile: any;
 
     jobs: any[] = [];
 
-    constructor(private lodestone: XivdbService) {
+    constructor(private lodestone: XivdbService, private auth: AuthService) {
+        this.login = this.auth.isIdentified();
+    }
+
+    public identified() {
+        this.login = false;
+        this.getProfile();
     }
 
     public getDoW(): any[] {
@@ -35,17 +42,23 @@ export class SidebarComponent implements OnInit {
         });
     }
 
-    public ngOnInit(): void {
-        this.lodestone
-            .getProfile(2895940)
-            .do(p => {
-                for (const job in p.data.classjobs) {
-                    if (p.data.classjobs.hasOwnProperty(job)) {
-                        this.jobs.push(p.data.classjobs[job]);
+    public getProfile(): void {
+        if (!this.login) {
+            this.lodestone
+                .getProfile(+this.auth.user.lodestoneId)
+                .do(p => {
+                    for (const job in p.data.classjobs) {
+                        if (p.data.classjobs.hasOwnProperty(job)) {
+                            this.jobs.push(p.data.classjobs[job]);
+                        }
                     }
-                }
-            })
-            .subscribe(profile => this.profile = profile);
+                })
+                .subscribe(profile => this.profile = profile);
+        }
+    }
+
+    public ngOnInit(): void {
+        this.getProfile();
     }
 
 }
