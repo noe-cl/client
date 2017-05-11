@@ -9,7 +9,7 @@
         <md-list class="sites">
             <h3 md-subheader>Sites utiles</h3>
             <div class="items">
-                <a [href]="site.link" md-list-item *ngFor="let site of sites">
+                <a target="_blank" [href]="site.link" md-list-item *ngFor="let site of sites">
                     <md-icon md-list-icon>link</md-icon>
                     <h4 md-line>{{site.name}}</h4>
                     <p md-line class="description">{{site.description}}</p>

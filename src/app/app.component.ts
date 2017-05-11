@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {MdDialog} from '@angular/material';
 import {LoginComponent} from './login/login.component';
+import {AuthService} from './service/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -12,15 +13,9 @@ export class AppComponent {
         {link: '/home', label: 'Accueil'},
         {link: '/presentation', label: 'Présentation CL'},
         {link: '/news', label: 'News'},
-        {link: '/forum', label: 'Forum'},
         {link: '/join-us', label: 'Nous rejoindre'},
     ];
 
-    constructor(private dialog: MdDialog) {
+    constructor(public auth: AuthService) {
     }
-
-    public login(): void {
-        this.dialog.open(LoginComponent);
-    }
-
 }

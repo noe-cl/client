@@ -4,14 +4,15 @@
 
 :host {
   text-align: center;
-  .container {
+  .login-container {
     width: 1200px;
     margin: 0 auto;
-    .header {
-
-    }
     .content {
       background: map-get(map-get($app-theme, background), background);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      nav {
+        background: mat-color($app-primary, 500);
+      }
       .menu {
         position: absolute;
         right: 5px;
@@ -22,6 +23,16 @@
         margin-top: 4px;
       }
     }
+  }
+  md-sidenav {
+    width: 300px;
+  }
+
+  md-sidenav-container {
+    background-color: unset;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 80px;
   }
 }
 

@@ -1,0 +1,12 @@
+:host {
+  .container {
+    display: flex;
+    padding: 10px;
+    .widget {
+      flex: 0 0 50%;
+    }
+    .how {
+      flex: 1;
+    }
+  }
+}

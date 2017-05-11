@@ -7,8 +7,21 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomeComponent} from './home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {
-    MdTabsModule, MdGridListModule, MdProgressBarModule, MdCardModule, MdListModule,
-    MdIconModule, MdChipsModule, MdButtonModule, MdMenuModule, MdDialogModule, MdInputModule
+    MdTabsModule,
+    MdGridListModule,
+    MdProgressBarModule,
+    MdCardModule,
+    MdListModule,
+    MdIconModule,
+    MdChipsModule,
+    MdButtonModule,
+    MdMenuModule,
+    MdDialogModule,
+    MdInputModule,
+    MdSidenavModule,
+    MdTooltipModule,
+    MdSnackBarModule,
+    MdProgressSpinnerModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -19,6 +32,12 @@ import {JoinUsComponent} from './join-us/join-us.component';
 import {MembersComponent} from './presentation/members/members.component';
 import {DiscordWidgetComponent} from './discord-widget/discord-widget.component';
 import {LoginComponent} from './login/login.component';
+import {SidebarComponent} from './sidebar/sidebar.component';
+import {XivdbService} from './service/xivdb.service';
+import {JobIconComponent} from './sidebar/job-icon/job-icon.component';
+import {AuthService} from './service/auth.service';
+import {ApiService} from './service/api.service';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -41,7 +60,10 @@ const routes: Routes = [
         JoinUsComponent,
         MembersComponent,
         DiscordWidgetComponent,
-        LoginComponent
+        LoginComponent,
+        SidebarComponent,
+        JobIconComponent,
+        RegisterComponent,
     ],
     imports: [
         // Routing.
@@ -62,14 +84,22 @@ const routes: Routes = [
         MdMenuModule,
         MdDialogModule,
         MdInputModule,
+        MdSidenavModule,
+        MdTooltipModule,
+        MdSnackBarModule,
+        MdProgressSpinnerModule,
 
         BrowserModule,
         FormsModule,
         HttpModule
     ],
-    providers: [],
+    providers: [
+        XivdbService,
+        AuthService,
+        ApiService
+    ],
     entryComponents: [
-        LoginComponent
+        RegisterComponent
     ],
     bootstrap: [AppComponent]
 })

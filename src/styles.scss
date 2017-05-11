@@ -1,11 +1,18 @@
 @import 'theme';
 
-body {
+html, body {
   width: 100%;
-  height: 100%;
-  margin: 0;
-  background: url("http://img.finalfantasyxiv.com/lds/h/R/a6Bm49It6jMLQvywkHgCNtbAa4.jpg") no-repeat center center fixed;
+  min-height: 100%;
+}
+
+body {
+  background: url("http://img.finalfantasyxiv.com/lds/h/F/0Fq12VYs-MUdPB6svSZ-dom2g0.jpg") no-repeat center top fixed;
   background-size: cover;
+  margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  padding-bottom: 50px;
+}
+
+//No idea why but I have to set this style here in order to get it working...
+.mat-ink-bar {
+  background-color: mat-color($app-accent, 100) !important;
 }

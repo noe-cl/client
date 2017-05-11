@@ -1,0 +1,48 @@
+<div *ngIf="login" class="container">
+    <app-login (loggedIn)="identified()"></app-login>
+</div>
+<div *ngIf="!login && profile !== null && profile !== undefined" class="profile-wrapper">
+    <div class="profile-container">
+        <img src="{{profile?.data.portrait}}" alt="avatar">
+        <h3>{{profile?.name}}</h3>
+        <i>{{profile?.data.title}}</i>
+        <div class="jobs">
+            <span class="jobCategory">Disciples de la guerre</span>
+            <md-grid-list cols="7" rowHeight="35px" gutterSize="5px">
+                <div *ngFor="let i = index;let job of getDoW()">
+                    <md-grid-tile *ngIf="i === 7"></md-grid-tile>
+                    <md-grid-tile>
+                        <app-job-icon [icon]="job.data.icon" [level]="job.level" [mdTooltip]="job.data.abbr"
+                                      mdTooltipPosition="above"></app-job-icon>
+                    </md-grid-tile>
+                </div>
+            </md-grid-list>
+        </div>
+        <div class="jobs">
+            <span class="jobCategory">Disciples de la main</span>
+            <md-grid-list cols="8" rowHeight="35px" gutterSize="5px">
+                <div *ngFor="let i = index; let job of getDoH()">
+                    <md-grid-tile>
+                        <app-job-icon [icon]="job.data.icon" [level]="job.level" [mdTooltip]="job.data.abbr"
+                                      mdTooltipPosition="above"></app-job-icon>
+                    </md-grid-tile>
+                </div>
+            </md-grid-list>
+        </div>
+        <div class="jobs">
+            <span class="jobCategory">Disciples de la terre</span>
+            <md-grid-list cols="7" rowHeight="35px" gutterSize="5px">
+                <md-grid-tile colspan="2"></md-grid-tile>
+                <md-grid-tile *ngFor="let job of getDoL()">
+                    <app-job-icon [icon]="job.data.icon" [level]="job.level" [mdTooltip]="job.data.abbr"
+                                  mdTooltipPosition="above"></app-job-icon>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+        <button md-button color="accent" (click)="disconnect()">Se déconnecter</button>
+    </div>
+</div>
+<div class="container" *ngIf="(profile === null || profile === undefined) && !login">
+    <md-spinner color="primary">
+    </md-spinner>
+</div>
