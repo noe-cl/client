@@ -20,7 +20,8 @@ import {
     MdInputModule,
     MdSidenavModule,
     MdTooltipModule,
-    MdSnackBarModule, MdProgressSpinnerModule
+    MdSnackBarModule,
+    MdProgressSpinnerModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -36,7 +37,7 @@ import {XivdbService} from './service/xivdb.service';
 import {JobIconComponent} from './sidebar/job-icon/job-icon.component';
 import {AuthService} from './service/auth.service';
 import {ApiService} from './service/api.service';
-import { RegisterComponent } from './register/register.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},

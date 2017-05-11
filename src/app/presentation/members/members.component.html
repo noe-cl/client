@@ -1,13 +1,13 @@
 <md-list>
     <h3 md-subheader>Membres</h3>
-    <md-list-item>
+    <md-list-item *ngFor="let member of members | async">
         <img md-list-avatar
              class="avatar"
-             src="http://img2.finalfantasyxiv.com/f/68a6d98913f9965724c62808d7e9b164_777c57311d510ca65dac3c1077dee435fc0_96x96.jpg?t=201711016"
-             alt="...">
-        <h3 md-line>Miu Asakura</h3>
-        <p md-line class="role">
-            Maître
-        </p>
+             src="{{member.avatar}}"
+             alt="{{member.name}}">
+        <h3 md-line>{{member.name}}</h3>
+        <!--<p md-line class="role">-->
+            <!--Maître-->
+        <!--</p>-->
     </md-list-item>
 </md-list>
