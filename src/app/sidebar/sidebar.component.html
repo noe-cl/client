@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!login && profile !== null && profile !== undefined" class="profile-wrapper">
     <div class="profile-container">
-        <img src="{{profile?.data.portrait}}" alt="avatar">
+        <a target="_blank" href="{{profile?.url_lodestone}}"><img src="{{profile?.data.portrait}}" alt="avatar"></a>
         <h3>{{profile?.name}}</h3>
         <i>{{profile?.data.title}}</i>
         <div class="jobs">

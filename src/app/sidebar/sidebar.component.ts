@@ -45,12 +45,14 @@ export class SidebarComponent implements OnInit {
         if (!this.login) {
             this.lodestone
                 .getProfile(+this.auth.user.lodestoneId)
-                .do(p => {
+                .map(p => {
                     for (const job in p.data.classjobs) {
                         if (p.data.classjobs.hasOwnProperty(job)) {
                             this.jobs.push(p.data.classjobs[job]);
                         }
                     }
+                    p.url_lodestone = p.url_lodestone.replace('https', 'http');
+                    return p;
                 })
                 .subscribe(profile => this.profile = profile);
         }
