@@ -1,4 +1,4 @@
-import {Component, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {ApiService} from '../service/api.service';
 import {AuthService} from '../service/auth.service';
 import {MdSnackBar, MdDialog} from '@angular/material';
@@ -15,6 +15,7 @@ export class LoginComponent {
 
     public password: string;
 
+    @Output()
     public loggedIn: EventEmitter<void> = new EventEmitter<void>();
 
     constructor(private api: ApiService, private authService: AuthService,

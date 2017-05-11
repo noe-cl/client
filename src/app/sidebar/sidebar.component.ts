@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { XivdbService } from '../service/xivdb.service';
-import { AuthService } from '../service/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {XivdbService} from '../service/xivdb.service';
+import {AuthService} from '../service/auth.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -19,7 +19,6 @@ export class SidebarComponent implements OnInit {
     }
 
     public identified() {
-        console.log('Identified !');
         this.login = false;
         this.getProfile();
     }
@@ -44,7 +43,6 @@ export class SidebarComponent implements OnInit {
 
     public getProfile(): void {
         if (!this.login) {
-            console.log(this.auth.user);
             this.lodestone
                 .getProfile(+this.auth.user.lodestoneId)
                 .do(p => {
@@ -56,6 +54,12 @@ export class SidebarComponent implements OnInit {
                 })
                 .subscribe(profile => this.profile = profile);
         }
+    }
+
+    public disconnect(): void {
+        this.auth.logout();
+        this.profile = null;
+        this.login = true;
     }
 
     public ngOnInit(): void {

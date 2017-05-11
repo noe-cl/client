@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from "../service/api.service";
-import { AuthService } from "../service/auth.service";
+import {Component, EventEmitter, Output} from '@angular/core';
+import {ApiService} from '../service/api.service';
+import {AuthService} from '../service/auth.service';
+import {MdDialogRef, MdSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-register',
@@ -17,14 +18,29 @@ export class RegisterComponent {
 
     public lodestoneId: number;
 
-    constructor(private api: ApiService, private auth: AuthService) {
+    constructor(private api: ApiService,
+                private dialogRef: MdDialogRef<RegisterComponent>,
+                private snack: MdSnackBar) {
     }
 
     public register(): void {
-        this.api.post('/users', {
-            login: this.login,
-            password: this.password,
-            lodestoneId: this.lodestoneId
-        })
+        if (this.password === this.password_check) {
+            this.api.post('/users', {
+                login: this.login,
+                password: this.password,
+                lodestoneId: this.lodestoneId
+            }).subscribe(() => {
+                this.snack.open('Inscription réussie');
+                setTimeout(() => {
+                    this.snack.dismiss();
+                }, 2000);
+                this.dialogRef.close();
+            });
+        } else {
+            this.snack.open('Mots de passe différents');
+            setTimeout(() => {
+                this.snack.dismiss();
+            }, 2000);
+        }
     }
 }

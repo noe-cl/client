@@ -3,7 +3,7 @@
 @include angular-material-theme($app-theme);
 
 :host {
-  .login-container {
+  .container {
     height: 100%;
     width: 100%;
     display: flex;

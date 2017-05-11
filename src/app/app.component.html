@@ -17,7 +17,8 @@
                     {{tab.label}}
                 </a>
                 <button md-icon-button (click)="sidenav.toggle()" class="menu">
-                    <md-icon>person_outline</md-icon>
+                    <md-icon *ngIf="!auth.isIdentified()">person_outline</md-icon>
+                    <md-icon *ngIf="auth.isIdentified()">person</md-icon>
                 </button>
             </nav>
             <router-outlet></router-outlet>

@@ -20,7 +20,7 @@ import {
     MdInputModule,
     MdSidenavModule,
     MdTooltipModule,
-    MdSnackBarModule
+    MdSnackBarModule, MdProgressSpinnerModule
 } from '@angular/material';
 import {ProgressionComponent} from './presentation/progression/progression.component';
 import {StatusComponent} from './presentation/progression/status/status.component';
@@ -86,6 +86,7 @@ const routes: Routes = [
         MdSidenavModule,
         MdTooltipModule,
         MdSnackBarModule,
+        MdProgressSpinnerModule,
 
         BrowserModule,
         FormsModule,
