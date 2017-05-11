@@ -1,19 +1,20 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
 
-    private _token: string;
+    private _token: string = null;
 
     private _user: AuthToken;
 
     constructor() {
         this._token = localStorage.getItem('noe.jwt');
+        this._user = jwt_decode(this._token);
     }
 
     public isIdentified(): boolean {
-        return this._token === null;
+        return this._token !== null;
     }
 
     public get user(): AuthToken {

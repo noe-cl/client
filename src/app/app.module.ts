@@ -36,7 +36,7 @@ import {XivdbService} from './service/xivdb.service';
 import {JobIconComponent} from './sidebar/job-icon/job-icon.component';
 import {AuthService} from './service/auth.service';
 import {ApiService} from './service/api.service';
-import {RegisterComponent} from './register/register.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},

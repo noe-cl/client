@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Http, RequestOptionsArgs, RequestMethod, Headers} from '@angular/http';
-import {Observable} from 'rxjs';
-import {AuthService} from './auth.service';
+import { Injectable } from '@angular/core';
+import { Http, RequestOptionsArgs, RequestMethod, Headers } from '@angular/http';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class ApiService {
@@ -34,10 +34,11 @@ export class ApiService {
     }
 
     public request<T>(uri: string, options: RequestOptionsArgs): Observable<T> {
+        options.headers = options.headers || new Headers();
         if (this.auth.isIdentified()) {
-            options.headers = options.headers || new Headers();
             options.headers.append('Authorization', 'Bearer ' + this.auth.token);
         }
+        options.headers.append('Content-Type', 'application/json');
         return this.http.request(ApiService.baseUrl + uri, options).map(res => res.json() as T);
     }
 }

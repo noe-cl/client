@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {XivdbService} from '../service/xivdb.service';
-import {AuthService} from '../service/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { XivdbService } from '../service/xivdb.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -16,10 +16,10 @@ export class SidebarComponent implements OnInit {
     jobs: any[] = [];
 
     constructor(private lodestone: XivdbService, private auth: AuthService) {
-        this.login = this.auth.isIdentified();
     }
 
     public identified() {
+        console.log('Identified !');
         this.login = false;
         this.getProfile();
     }
@@ -44,6 +44,7 @@ export class SidebarComponent implements OnInit {
 
     public getProfile(): void {
         if (!this.login) {
+            console.log(this.auth.user);
             this.lodestone
                 .getProfile(+this.auth.user.lodestoneId)
                 .do(p => {
@@ -58,6 +59,7 @@ export class SidebarComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.login = !this.auth.isIdentified();
         this.getProfile();
     }
 

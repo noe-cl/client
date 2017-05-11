@@ -1,0 +1,14 @@
+<h3>Login</h3>
+<form>
+    <md-input-container>
+        <input mdInput required [(ngModel)]="login" name="login" placeholder="Identifiant">
+    </md-input-container>
+    <md-input-container>
+        <input mdInput required [(ngModel)]="password" name="password" type="password" placeholder="Mot de passe">
+    </md-input-container>
+    <md-input-container>
+        <input mdInput required [(ngModel)]="password_check" name="password_check" type="password"
+               placeholder="Vérification du mot de passe">
+    </md-input-container>
+    <button md-raised-button type="submit" color="primary" (click)="register()">S'inscrire</button>
+</form>
