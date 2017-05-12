@@ -1,23 +1,16 @@
-<md-grid-list cols="3" rowHeight="180px">
-    <md-grid-tile [rowspan]="3">
-        Calendrier
-    </md-grid-tile>
-    <md-grid-tile [colspan]="2" [rowspan]="3">
+<md-grid-list cols="3" rowHeight="200px">
+    <md-grid-tile [colspan]="3" [rowspan]="3">
         Newsletter du mois
     </md-grid-tile>
-    <md-grid-tile [colspan]="2" [rowspan]="2">
-        <md-list class="sites">
-            <h3 md-subheader>Sites utiles</h3>
-            <div class="items">
-                <a target="_blank" [href]="site.link" md-list-item *ngFor="let site of sites">
-                    <md-icon md-list-icon>link</md-icon>
-                    <h4 md-line>{{site.name}}</h4>
-                    <p md-line class="description">{{site.description}}</p>
-                </a>
-            </div>
-        </md-list>
-    </md-grid-tile>
-    <md-grid-tile [rowspan]="2">
-        Vidéo du mois
+    <md-grid-tile [rowspan]="2" [colspan]="3" class="monthly-video">
+        <md-card>
+            <md-card-header>
+                <md-card-title>Vidéo du mois</md-card-title>
+            </md-card-header>
+            <md-card-content>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Jt1h1MinlLI" frameborder="0"
+                        allowfullscreen></iframe>
+            </md-card-content>
+        </md-card>
     </md-grid-tile>
 </md-grid-list>
