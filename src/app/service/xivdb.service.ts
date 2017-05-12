@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, RequestOptionsArgs} from '@angular/http';
+import {Http, RequestOptionsArgs} from '@angular/http';
 import {Observable} from 'rxjs';
 
 @Injectable()
 export class XivdbService {
 
-    private cache: {uri: string, data: any}[] = [];
+    private cache: { uri: string, data: any }[] = [];
 
     constructor(private http: Http) {
     }
@@ -33,8 +33,9 @@ export class XivdbService {
     }
 
     private cachedRequest(uri: string, options: RequestOptionsArgs): Observable<any> {
-        if (this.getCache(uri)) {
-            return Observable.of(this.cache.filter(e => e.uri = uri)[0]);
+        const cached = this.getCache(uri);
+        if (cached !== null) {
+            return Observable.of(cached);
         } else {
             return this.http.get(uri, options)
                 .do(data => this.cache.push({uri: uri, data: data}));
