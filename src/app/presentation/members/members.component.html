@@ -3,11 +3,11 @@
     <md-list-item *ngFor="let member of members | async">
         <img md-list-avatar
              class="avatar"
-             src="{{member.avatar}}"
-             alt="{{member.name}}">
-        <h3 md-line>{{member.name}}</h3>
-        <!--<p md-line class="role">-->
-            <!--Maître-->
-        <!--</p>-->
+             src="{{member.profile.avatar}}"
+             alt="{{member.profile.name}}">
+        <h3 md-line>{{member.profile.name}}</h3>
+        <p md-line class="role">
+            {{getRoleName(member.id_role)}}
+        </p>
     </md-list-item>
 </md-list>

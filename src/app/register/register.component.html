@@ -1,20 +1,25 @@
 <div class="container">
     <h3>Inscription</h3>
-    <form (submit)="register()">
+    <form [formGroup]="form" (submit)="register()">
         <md-input-container>
-            <input mdInput required [(ngModel)]="login" name="login" placeholder="Identifiant">
+            <input mdInput required formControlName="login" placeholder="Identifiant">
+            <md-error>Identifiant requis</md-error>
         </md-input-container>
+        <div formGroupName="passwords">
+            <md-input-container>
+                <input mdInput required formControlName="password" type="password" placeholder="Mot de passe">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput required formControlName="password_check" type="password"
+                       placeholder="Vérification du mot de passe">
+                <md-error>Les mots de passe doivent correspondre</md-error>
+            </md-input-container>
+        </div>
         <md-input-container>
-            <input mdInput required [(ngModel)]="password" name="password" type="password" placeholder="Mot de passe">
+            <input mdInput required formControlName="lodestone_id" type="number"
+                   placeholder="lodestoneId">
+            <md-error>LodestoneId invalide</md-error>
         </md-input-container>
-        <md-input-container>
-            <input mdInput required [(ngModel)]="password_check" pattern="password" name="password_check" type="password"
-                   placeholder="Vérification du mot de passe">
-        </md-input-container>
-        <md-input-container>
-            <input mdInput required [(ngModel)]="lodestoneId" name="lodestone_id" type="number"
-                   placeholder="123456789">
-        </md-input-container>
-        <button md-raised-button type="submit" color="primary" >S'inscrire</button>
+        <button md-raised-button [disabled]="!form.valid" type="submit" color="primary">S'inscrire</button>
     </form>
 </div>

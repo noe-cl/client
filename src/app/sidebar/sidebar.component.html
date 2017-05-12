@@ -43,6 +43,10 @@
     </div>
 </div>
 <div class="container" *ngIf="(profile === null || profile === undefined) && !login">
-    <md-spinner color="primary">
+    <div *ngIf="error">LodestoneId invalide, merci de saisir le bon lodestoneId ci-dessous:
+        <input type="text">
+        <button md-button color="accent" (click)="disconnect()">Se déconnecter</button>
+    </div>
+    <md-spinner *ngIf="!error" color="primary">
     </md-spinner>
 </div>

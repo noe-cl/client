@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {XivdbService} from '../service/xivdb.service';
 import {AuthService} from '../service/auth.service';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
     selector: 'app-sidebar',
@@ -9,13 +10,15 @@ import {AuthService} from '../service/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
+    public error = false;
+
     public login = true;
 
     profile: any;
 
     jobs: any[] = [];
 
-    constructor(private lodestone: XivdbService, private auth: AuthService) {
+    constructor(private lodestone: XivdbService, private auth: AuthService, private snack: MdSnackBar) {
     }
 
     public identified() {
@@ -43,9 +46,11 @@ export class SidebarComponent implements OnInit {
 
     public getProfile(): void {
         if (!this.login) {
+            this.error = false;
             this.lodestone
                 .getProfile(+this.auth.user.lodestoneId)
                 .map(p => {
+                    this.jobs = [];
                     for (const job in p.data.classjobs) {
                         if (p.data.classjobs.hasOwnProperty(job)) {
                             this.jobs.push(p.data.classjobs[job]);
@@ -54,7 +59,11 @@ export class SidebarComponent implements OnInit {
                     p.url_lodestone = p.url_lodestone.replace('https', 'http');
                     return p;
                 })
-                .subscribe(profile => this.profile = profile);
+                .subscribe(profile => this.profile = profile, () => {
+                    this.auth.logout();
+                    this.login = true;
+                    this.snack.open('LodestoneId invalide, tu as été automatiquement déconnecté.');
+                });
         }
     }
 
