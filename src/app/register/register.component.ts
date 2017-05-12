@@ -66,31 +66,16 @@ export class RegisterComponent {
     }
 
     public register(): void {
-        console.log(this.form.value);
-        // this.xivdb.getProfile(this.lodestoneId).subscribe(() => {
-        //     if (this.password === this.password_check) {
-        //         this.api.post('/users', {
-        //             login: this.login,
-        //             password: this.password,
-        //             lodestoneId: this.lodestoneId
-        //         }).subscribe(() => {
-        //             this.snack.open('Inscription réussie');
-        //             setTimeout(() => {
-        //                 this.snack.dismiss();
-        //             }, 2000);
-        //             this.dialogRef.close();
-        //         });
-        //     } else {
-        //         this.snack.open('Mots de passe différents');
-        //         setTimeout(() => {
-        //             this.snack.dismiss();
-        //         }, 2000);
-        //     }
-        // }, () => {
-        //     this.snack.open('LodestoneId invalide');
-        //     setTimeout(() => {
-        //         this.snack.dismiss();
-        //     }, 2000);
-        // });
+        this.api.post('/users', {
+            login: this.form.value.login,
+            password: this.form.value.passwords.password,
+            lodestoneId: this.form.value.lodestone_id
+        }).subscribe(() => {
+            this.snack.open('Inscription réussie');
+            setTimeout(() => {
+                this.snack.dismiss();
+            }, 2000);
+            this.dialogRef.close();
+        });
     }
 }
