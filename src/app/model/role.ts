@@ -6,7 +6,7 @@ export class Role {
     public static MASTER = new Role(1, 'Maître');
     public static FOUNDER = new Role(2, 'Fondateur');
     public static OFFICIER = new Role(3, 'Officier');
-    public static MEMBER = new Role(4, 'Member');
+    public static MEMBER = new Role(4, 'Membre');
     public static GUEST = new Role(5, 'Invité');
 
     public static forId(id: number): Role {
