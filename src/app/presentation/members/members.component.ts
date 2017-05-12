@@ -21,7 +21,7 @@ export class MembersComponent {
                 if (user.id_role < 5) {
                     profiles.push(this.lodestone.getProfile(user.lodestoneId)
                         .map(profile => {
-                            const result = user;
+                            const result: User = user;
                             result.profile = profile;
                             return result;
                         }));
