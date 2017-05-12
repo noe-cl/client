@@ -14,6 +14,7 @@ export class AppComponent {
         {link: '/presentation', label: 'Présentation CL'},
         {link: '/news', label: 'News'},
         {link: '/join-us', label: 'Nous rejoindre'},
+        {link: '/websites', label: 'Sites utiles'},
     ];
 
     constructor(public auth: AuthService) {

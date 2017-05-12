@@ -1,15 +1,8 @@
 :host {
-  .sites {
-    text-align: left;
-  }
-  .items {
-    height: 300px;
-    overflow-y: scroll;
-    a{
-      text-decoration: none;
-    }
-  }
   .description {
     white-space: normal !important;
+  }
+  md-grid-list{
+    padding-bottom: 30px;
   }
 }

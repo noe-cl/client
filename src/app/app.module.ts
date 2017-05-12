@@ -38,14 +38,15 @@ import {JobIconComponent} from './sidebar/job-icon/job-icon.component';
 import {AuthService} from './service/auth.service';
 import {ApiService} from './service/api.service';
 import {RegisterComponent} from './register/register.component';
+import {WebsitesComponent} from './websites/websites.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'presentation', component: PresentationComponent},
     {path: 'news', component: NewsComponent},
-    {path: 'forum', component: ForumComponent},
     {path: 'join-us', component: JoinUsComponent},
+    {path: 'websites', component: WebsitesComponent},
 ];
 
 @NgModule({
@@ -64,6 +65,7 @@ const routes: Routes = [
         SidebarComponent,
         JobIconComponent,
         RegisterComponent,
+        WebsitesComponent,
     ],
     imports: [
         // Routing.
