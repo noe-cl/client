@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 @Injectable()
 export class XivdbService {
 
-    private cache: { uri: string, data: any }[] = [];
+    private cache: {uri: string, data: any}[] = [];
 
     constructor(private http: Http) {
     }
@@ -38,6 +38,10 @@ export class XivdbService {
             return Observable.of(cached);
         } else {
             return this.http.get(uri, options)
+                .catch(() => {
+                    this.http.get('https://xivsync.com/character/add/' + uri.split('/')[uri.length - 1]);
+                    return Observable.of(null);
+                })
                 .do(data => this.cache.push({uri: uri, data: data}));
         }
     }
