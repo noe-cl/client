@@ -6,5 +6,7 @@ export interface User {
 
     password: string;
 
-    role_id: number;
+    id_role: number;
+
+    profile: any;
 }
