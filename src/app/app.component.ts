@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {LoginComponent} from './login/login.component';
 import {AuthService} from './service/auth.service';
 
 @Component({
