@@ -3,10 +3,11 @@
     display: flex;
     padding: 10px;
     .widget {
-      flex: 0 0 50%;
+      flex: 0 0 35%;
     }
     .how {
       flex: 1;
+      text-align: left;
     }
   }
 }
