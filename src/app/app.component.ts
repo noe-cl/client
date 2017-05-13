@@ -1,6 +1,4 @@
 import {Component} from '@angular/core';
-import {MdDialog} from '@angular/material';
-import {LoginComponent} from './login/login.component';
 import {AuthService} from './service/auth.service';
 
 @Component({
@@ -13,8 +11,8 @@ export class AppComponent {
         {link: '/home', label: 'Accueil'},
         {link: '/presentation', label: 'Présentation CL'},
         {link: '/news', label: 'News'},
-        {link: '/join-us', label: 'Nous rejoindre'},
         {link: '/websites', label: 'Sites utiles'},
+        {link: '/join-us', label: 'Nous rejoindre'},
     ];
 
     constructor(public auth: AuthService) {
