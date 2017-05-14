@@ -6,7 +6,7 @@
   text-align: center;
   .login-container {
     width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 80px;
     .content {
       background: map-get(map-get($app-theme, background), background);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -24,15 +24,17 @@
       }
     }
   }
+
   md-sidenav {
     width: 300px;
+    height: 100vh;
   }
 
   md-sidenav-container {
+    position: fixed;
     background-color: unset;
     height: 100%;
     width: 100%;
-    padding-bottom: 80px;
   }
 }
 
