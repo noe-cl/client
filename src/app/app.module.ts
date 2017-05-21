@@ -39,14 +39,17 @@ import {AuthService} from './service/auth.service';
 import {ApiService} from './service/api.service';
 import {RegisterComponent} from './register/register.component';
 import {WebsitesComponent} from './websites/websites.component';
+import {CalendarComponent} from './calendar/calendar.component';
+import {CalendarModule} from 'angular-calendar';
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'presentation', component: PresentationComponent},
     {path: 'news', component: NewsComponent},
-    {path: 'join-us', component: JoinUsComponent},
     {path: 'websites', component: WebsitesComponent},
+    {path: 'calendar', component: CalendarComponent},
+    {path: 'join-us', component: JoinUsComponent},
 ];
 
 @NgModule({
@@ -66,6 +69,7 @@ const routes: Routes = [
         JobIconComponent,
         RegisterComponent,
         WebsitesComponent,
+        CalendarComponent,
     ],
     imports: [
         // Routing.
@@ -73,6 +77,9 @@ const routes: Routes = [
 
         // Animations for material.
         BrowserAnimationsModule,
+
+        // Calendar module
+        CalendarModule.forRoot(),
 
         // Material modules.
         MdTabsModule,

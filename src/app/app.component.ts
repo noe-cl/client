@@ -12,6 +12,7 @@ export class AppComponent {
         {link: '/presentation', label: 'Présentation CL'},
         {link: '/news', label: 'News'},
         {link: '/websites', label: 'Sites utiles'},
+        {link: '/calendar', label: 'Calendrier'},
         {link: '/join-us', label: 'Nous rejoindre'},
     ];
 
