@@ -1,3 +1,18 @@
-<md-grid-list cols="6" rowHeight="100px">
-    <md-grid-tile *ngFor="let day of month" [style.background]="'lightblue'"></md-grid-tile>
-</md-grid-list>
+<div [ngSwitch]="view">
+    <mwl-calendar-month-view
+            *ngSwitchCase="'month'"
+            [viewDate]="viewDate"
+            [events]="events"
+            [activeDayIsOpen]="true">
+    </mwl-calendar-month-view>
+    <mwl-calendar-week-view
+            *ngSwitchCase="'week'"
+            [viewDate]="viewDate"
+            [events]="events">
+    </mwl-calendar-week-view>
+    <mwl-calendar-day-view
+            *ngSwitchCase="'day'"
+            [viewDate]="viewDate"
+            [events]="events">
+    </mwl-calendar-day-view>
+</div>

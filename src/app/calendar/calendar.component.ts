@@ -1,17 +1,45 @@
-import {Component} from '@angular/core';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Subject} from 'rxjs';
+import {CalendarEvent} from 'angular-calendar';
 
+
+const colors: any = {
+    red: {
+        primary: '#ad2121',
+        secondary: '#FAE3E3'
+    },
+    blue: {
+        primary: '#1e90ff',
+        secondary: '#D1E8FF'
+    },
+    yellow: {
+        primary: '#e3bc08',
+        secondary: '#FDF1BA'
+    }
+};
 
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
-    styleUrls: ['./calendar.component.scss']
+    styleUrls: ['./calendar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarComponent {
 
-    public month = [];
+    view = 'month';
 
-    constructor() {
-        this.month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-            21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
-    }
+    viewDate: Date = new Date();
+
+    events: CalendarEvent[] = [{
+        title: 'Draggable event',
+        color: colors.yellow,
+        start: new Date(),
+        draggable: true
+    }, {
+        title: 'A non draggable event',
+        color: colors.red,
+        start: new Date()
+    }];
+
+    refresh: Subject<any> = new Subject();
 }
