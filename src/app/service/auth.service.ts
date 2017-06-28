@@ -11,7 +11,7 @@ export class AuthService {
     constructor() {
         this._token = localStorage.getItem('noe.jwt');
         if (this.isIdentified()) {
-            this._user = jwt_decode(this._token);
+            this._user = <AuthToken>jwt_decode(this._token);
         }
     }
 
@@ -29,7 +29,7 @@ export class AuthService {
 
     public set token(token: string) {
         localStorage.setItem('noe.jwt', token);
-        this._user = jwt_decode(token);
+        this._user = <AuthToken>jwt_decode(token);
         this._token = token;
     }
 

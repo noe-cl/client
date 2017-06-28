@@ -1,11 +1,71 @@
-<md-grid-list cols="3" rowHeight="180px">
-    <md-grid-tile [colspan]="2" [rowspan]="3">
-        Qui sommes-nous?
+<md-grid-list cols="3" rows="2" rowHeight="180px">
+    <md-grid-tile [colspan]="2" [rowspan]="3" class="description-container">
+        <div class="description-text">
+            <h2>La Compagnie Libre</h2>
+            <p>
+                Noe, créée 3 jours après la sortie de <span class="italic">Final Fantasy XIV: A Realm Reborn</span>
+                est une compagnie axée Pve.
+                <br>
+                Nous sommes également présents en PvP par moment, histoire de se changer les idées, mais nos objectifs
+                sont
+                avant tout PvE.
+                <br>
+                Notre but est de progresser dans le contenu HL tout en s'éclatant ensemble, parce qu'après tout,
+                <br>
+                on joue pour ça !
+                <br>
+                <br>
+                Nous avons deux roster à l'heure actuelle, avec un rythme qui leur est propre
+                (1 run par semaine avec possibilité de run le week end si tout le monde est présent).
+                <br>
+                <br>
+                Si vous souhaitez nous rejoindre pour accompagner l'un de nos roster ou même en créer un, n'hésitez pas
+                à
+                nous contacter IG (liste des membres ci-contre) ou bien via discord (voir onglet "Nous Rejoindre")
+            </p>
+        </div>
     </md-grid-tile>
     <md-grid-tile [rowspan]="3">
         <app-members></app-members>
     </md-grid-tile>
     <md-grid-tile [colspan]="3" [rowspan]="2">
-        Avancement de la CL
+        <table class="progression">
+            <thead>
+            <tr>
+                <th>Primordiaux</th>
+                <th>Raids</th>
+            </tr>
+            </thead>
+            <tr>
+                <td mdTooltip="8/8" mdTooltipPosition="above">
+                    A Realm Reborn
+                    <md-progress-bar mode="determinate" value="100"></md-progress-bar>
+                </td>
+                <td mdTooltip="13/13" mdTooltipPosition="above">
+                    Bahamut
+                    <md-progress-bar mode="determinate" value="100"></md-progress-bar>
+                </td>
+            </tr>
+            <tr>
+                <td mdTooltip="5/8" mdTooltipPosition="above">
+                    Heavensward
+                    <md-progress-bar mode="determinate" color="accent" value="100"></md-progress-bar>
+                </td>
+                <td mdTooltip="4/12" mdTooltipPosition="above">
+                    Alexander
+                    <md-progress-bar mode="determinate" color="accent" value="33"></md-progress-bar>
+                </td>
+            </tr>
+            <tr>
+                <td mdTooltip="0/2" mdTooltipPosition="above">
+                    Stormblood
+                    <md-progress-bar mode="determinate" value="0"></md-progress-bar>
+                </td>
+                <td mdTooltip="0/0" mdTooltipPosition="above">
+                    Omega
+                    <md-progress-bar mode="determinate" value="0"></md-progress-bar>
+                </td>
+            </tr>
+        </table>
     </md-grid-tile>
 </md-grid-list>

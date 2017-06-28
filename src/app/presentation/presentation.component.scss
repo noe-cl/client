@@ -1,0 +1,15 @@
+:host {
+  .description-container {
+    .description-text {
+      text-align: left;
+      margin: 20px;
+    }
+  }
+  .progression {
+    width: 100%;
+    th, td {
+      width: 50%;
+      padding: 15px;
+    }
+  }
+}
