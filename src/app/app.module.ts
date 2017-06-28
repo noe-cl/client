@@ -44,7 +44,6 @@ const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'presentation', component: PresentationComponent},
-    {path: 'news', component: NewsComponent},
     {path: 'join-us', component: JoinUsComponent},
     {path: 'websites', component: WebsitesComponent},
 ];
